@@ -12,6 +12,8 @@ public class FarmerScript : MonoBehaviour
     private Rigidbody rb;
 
     public float jump;
+
+    private Master master;
     void Start()
     {
 
@@ -23,6 +25,8 @@ public class FarmerScript : MonoBehaviour
 
         animator.SetFloat("Speed_f", animSpeed);
 
+        master = GameObject.Find("Master").GetComponent<Master>();
+
     }
 
     // Update is called once per frame
@@ -32,6 +36,17 @@ public class FarmerScript : MonoBehaviour
             
             rb.AddForce(Vector3.up * jump, ForceMode.Impulse);
             animator.SetTrigger("Jump_trig");
+
+        }
+    }
+
+    public void OnCollisionEnter(Collision colision){
+
+        if(colision.gameObject.tag == "Barrera"){
+
+            Debug.Log("Plonk, me golpié con uno barrero");
+
+            master.gameOver=true;
 
         }
     }
