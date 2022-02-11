@@ -346,6 +346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jump: 10
+  explosionPS: {fileID: 2630815748524575241, guid: cb7cd9b0c56a24d49a40784bd3203ae6, type: 3}
 --- !u!1 &835818919
 GameObject:
   m_ObjectHideFlags: 0

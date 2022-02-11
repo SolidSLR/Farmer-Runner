@@ -14,6 +14,8 @@ public class FarmerScript : MonoBehaviour
     public float jump;
 
     private Master master;
+
+    public GameObject explosionPS;
     void Start()
     {
 
@@ -32,7 +34,7 @@ public class FarmerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space)){
+        if(Input.GetKeyDown(KeyCode.Space) && !master.gameOver){
             
             rb.AddForce(Vector3.up * jump, ForceMode.Impulse);
             animator.SetTrigger("Jump_trig");
@@ -47,6 +49,16 @@ public class FarmerScript : MonoBehaviour
             Debug.Log("Plonk, me golpié con uno barrero");
 
             master.gameOver=true;
+
+            GameObject explosion = Instantiate(explosionPS, transform.position, Quaternion.identity);
+
+            explosion.GetComponent<ParticleSystem>().Play();
+
+            animator.SetBool("Death_b", true);
+
+            animator.SetInteger("DeathType_int", 1);
+
+            rb.velocity = Vector3.zero;
 
         }
     }
